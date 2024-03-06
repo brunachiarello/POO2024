@@ -29,5 +29,19 @@ struct pessoa funcs[15] = {
 };
 
 int main() {
+/*Escreva um programa em C que leia dois valores inteiros, respectivamente, um numero de mes 
+e um codigo de funcionario e:
+• mostre a lista com o nome dos funcionarios que nasceram nesse mes
+• localize o funcionario que tenha esse codigo em uma mensagem no formato:
+"Funcionario " -nome- " (" -codigo- ")localizado!"
+ou
+"Funcionario " -codigo- " NAO localizado"
+*/
+
+  //scanf("%d %d", mes, codigo);
+
+
+
+  
   return 0;
 }
