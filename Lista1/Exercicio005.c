@@ -37,11 +37,23 @@ e um codigo de funcionario e:
 ou
 "Funcionario " -codigo- " NAO localizado"
 */
+  int m, c;
+  scanf("%d %d", &m, &c);
+  for(int i = 0; i < 15; i++){
+    
+    if(funcs[i].nasc.mes == m){
+      // aniversariantes
+      printf(funcs[i].nome,"\n");  
 
-  //scanf("%d %d", mes, codigo);
+    } else if(funcs[i].codigo == c){ 
+      // achou funcionario
+      printf("Funcionario ", funcs[i].nome, " (", funcs[i].codigo, ")localizado!");
 
-
-
+    } else {
+      // n achou funcionario
+      printf("Funcionario ", funcs[i].codigo, " NAO localizado!");
+    }
+  }
   
   return 0;
 }
