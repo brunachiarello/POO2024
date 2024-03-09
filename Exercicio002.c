@@ -4,15 +4,15 @@
 int conta_inteiros(FILE *input);
 
 int conta_inteiros(FILE *input) {
-  char *num;
-  fscanf(stdin, num);
-  //for(int i = 0; i < input; i++){
-    int *maior = 0;
-    if(maior < num){
+  int num;
+  int maior = INT_MIN;
+  
+  while(fscanf(input, "%d", &num) == 1){
+    if(num > maior){
       maior = num;
-    }
-    printf("%p", maior);
-  //}
+    }   
+  }
+  return maior; 
 }
 
 int main() {

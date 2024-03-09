@@ -1,7 +1,0 @@
-Exercicio002.c: In function ‘conta_inteiros’:
-Exercicio002.c:8:7: error: array size missing in ‘num’
-    8 |   int num[];
-      |       ^~~
-Exercicio002.c:11:12: warning: returning ‘int *’ from a function with return type ‘int’ makes integer from pointer without a cast [-Wint-conversion]
-   11 |     return num;
-      |            ^~~

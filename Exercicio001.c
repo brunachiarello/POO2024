@@ -7,15 +7,26 @@ void processa_vetor(int *vet, int tam, int val);
 void processa_vetor(int *vet, int tam, int val) {
 /* Recebe um vetor de inteiros, seu tamanho, um valor val e troca todas as ocorrencias de val no vetor por val+1,
 exceto a ultima ocorrencia */
+  int ultimo = 0;
   for(int i = tam - 1; i >= 0; i--){
     if(vet[i] == val){
-      if(i >= 0 && vet[i - 1] == val){
-        vet[i - 1] = val + 1;
-      } 
+      ultimo++; // primeira passagem ultimo = 1
+      if(ultimo > 1){
+        vet[i] = val + 1;
+      }
     } 
   }
 
+
+
+/*
+  for(int i = tam - 1; i >= 0; i--){
+    if(vet[i] == val){
+      vet[i] = val + 1;
+    } 
+  }*/
 }
+
 
 int main() {
   int i, tam, val, vet[MAX];
