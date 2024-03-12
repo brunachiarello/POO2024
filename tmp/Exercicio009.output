@@ -1,7 +1,7 @@
 Exercicio009:
-- Teste 1: ERRO [DIFF]
-- Teste 2: ERRO [DIFF]
-- Teste 3: ERRO [DIFF]
-- Teste 4: ERRO [DIFF]
-ACERTOS = 0/4 [0]
+- Teste 1: OK [0.00]
+- Teste 2: OK [0.00]
+- Teste 3: OK [0.00]
+- Teste 4: OK [0.00]
+ACERTOS = 4/4 [0]
 

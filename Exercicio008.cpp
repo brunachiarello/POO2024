@@ -1,27 +1,34 @@
 #include <iostream>
 
 using namespace std;
-/*Fac ¸a um programa em C++ que leia um vetor com nove n´ umeros inteiros, calcule e mostre os n´ umeros primos e
- suas respectivas posic ¸˜ oes.*/
 
-void primo(int vetor[9]){
+int primo(int n){ // verifica se é primo
+    if(n <= 1){
+        return 0;
+    }
+    for(int i = 2; i * i <= n; i++){
+        if(n % i == 0){
+            return 0;
+        }
+    }
+    return 1;
+}
 
+void imprime(int vetor[9]){
     for(int i = 0; i < 9; i++){
-        for(int j = 1; j <= 1000; j++){
-            if(vetor[i] % j != 0){
-                
-            }
-        } 
+        if(primo(vetor[i])) { // se for primo imprime
+            cout << vetor[i] << " " << i << endl;
+        }
     }
 }
-   
-int main(){
+
+int main() {
     int vetor[9];
     for(int i = 0; i < 9; i++){
         cin >> vetor[i];
     }
 
-    primo(vetor);
+    imprime(vetor);
 
     return 0;
 }
