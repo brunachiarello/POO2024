@@ -1,4 +1,7 @@
 Exercicio009:
-- Arquivo 'Exercicio009.cpp' NÃO compila (há erros ou advertências)...
-ACERTOS = 0/4 [ERRO DE COMPILAÇÃO]
+- Teste 1: ERRO [DIFF]
+- Teste 2: ERRO [DIFF]
+- Teste 3: ERRO [DIFF]
+- Teste 4: ERRO [DIFF]
+ACERTOS = 0/4 [0]
 
