@@ -5,19 +5,14 @@ using namespace std;
  suas respectivas posic ¸˜ oes.*/
 
 void primo(int vetor[9]){
-    for(int i = 0; i < 9; i++){
-        int j;
-        for (j = 2; j * j <= vetor[i]; j++) {
-            if (vetor[i] % j == 0){
-                break;
-            }
-        
-        }
-        if (j * j > vetor[i]) {
-            cout << vetor[i] << i << endl;
-        }
-    }
 
+    for(int i = 0; i < 9; i++){
+        for(int j = 1; j <= 1000; j++){
+            if(vetor[i] % j != 0){
+                
+            }
+        } 
+    }
 }
    
 int main(){
