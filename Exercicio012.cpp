@@ -6,6 +6,7 @@ class Estudante {
 private:
     string nome;
     int nota[10]; // vetor parcialmente preenchido ***********
+    int numNotas;
 
 public:
     Estudante(){
@@ -29,19 +30,22 @@ public:
     }
 
     bool adcionaNota(){
-
+        numNotas++;
+        return true;
     }
 
     int obtemNumNotas(){
-
+        return numNotas;
     }
 
     int obtemNota(){
-
+        return nota[10];
     }
 
     int obtemMedia(){
-
+        for(int i = 0; i < numNotas; i++){
+            
+        }
     }
 
 };
