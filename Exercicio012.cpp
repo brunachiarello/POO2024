@@ -1,22 +1,25 @@
 #include <iostream>
+#include <iomanip>
+
+#define MAX 10
 
 using namespace std;
 
 class Estudante {
 private:
     string nome;
-    int nota[10]; // vetor parcialmente preenchido ***********
+    int *nota[MAX]; // vetor parcialmente preenchido ***********
     int numNotas;
 
 public:
     Estudante(){
         nome = {};
-        nota[10] = {0}; // ***********
+        *nota = {0}; // ***********
     }
 
-    Estudante(string n, int nt[10]){
+    Estudante(string n){
         nome = n;
-        nt[10] = 0; // *********
+        *nota = 0; // *********
     }
 
     ~Estudante(){}
@@ -29,7 +32,7 @@ public:
         return nome;
     }
 
-    bool adcionaNota(){
+    bool adcionaNota(int *n){
         numNotas++;
         return true;
     }
@@ -39,7 +42,7 @@ public:
     }
 
     int obtemNota(){
-        return nota[10];
+        return *nota;
     }
 
     int obtemMedia(){
@@ -47,9 +50,31 @@ public:
             
         }
     }
-
 };
 
-int main(){
-    return 0;
+void mostraEstudante(Estudante &e) {
+  	cout << e.obtemNome() << " [";
+    int n = e.obtemNumNotas();
+    for (int i=0; i<n; ++i) {
+        if (i>0) cout << " ";
+        cout << fixed << setprecision(1) << e.obtemNota(i);
+    }
+    cout << "] = " << fixed << setprecision(4) << e.obtemMedia() << endl;
+}
+
+int main() {
+  Estudante e1;
+  mostraEstudante(e1);
+  e1.defineNome("Fulano");
+  cout << (e1.adicionaNota(7.0)?"true":"false") << endl;
+  cout << (e1.adicionaNota(10.0)?"true":"false") << endl;
+  mostraEstudante(e1);
+  Estudante e2("Beltrano");
+  mostraEstudante(e2);
+  double n = 1.0;
+  while (e2.adicionaNota(n)) {
+        mostraEstudante(e2);
+        n = n + 1.0;
+  }
+  return 0;
 }

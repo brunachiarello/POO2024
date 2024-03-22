@@ -59,19 +59,23 @@ public:
 int main() {
     int px, py, orientacao;
     string operacao;
+
     // LEITURA
     cin >> px;
     cin >> py;
     cin >> orientacao;
     cin >> operacao;
+
     // TESTE DE FUNCIONAMENTO
     Robo *robo = new Robo();
     robo->posiciona(px,py,orientacao);
     if ( robo->obtemPosicaoX()!=px || robo->obtemPosicaoY()!=py ||
     robo->obtemOrientacao()!=orientacao )
     return 1;
+
     // OPERACAO
     robo->movimenta(operacao);
+    
     // SAIDA
     cout << robo->obtemPosicaoX() << " ";
     cout << robo->obtemPosicaoY() << " ";
