@@ -8,18 +8,22 @@ using namespace std;
 class Estudante {
 private:
     string nome;
-    int *nota[MAX]; // vetor parcialmente preenchido ***********
+    double nota[MAX]; 
     int numNotas;
 
 public:
     Estudante(){
         nome = {};
-        *nota = {0}; // ***********
+        for(int i = 0; i < MAX; i++){
+            nota[i] = 0;
+        }
     }
 
     Estudante(string n){
         nome = n;
-        *nota = 0; // *********
+        for(int i = 0; i < MAX; i++){
+            nota[i] = 0;
+        }
     }
 
     ~Estudante(){}
@@ -32,23 +36,34 @@ public:
         return nome;
     }
 
-    bool adcionaNota(int *n){
-        numNotas++;
-        return true;
+    bool adicionaNota(double nt){
+        if(numNotas < MAX){
+            numNotas++;
+            return true;
+        }
+        return false;      
     }
 
     int obtemNumNotas(){
         return numNotas;
     }
 
-    int obtemNota(){
-        return *nota;
+    int obtemNota(int indice){
+        if(indice >= 0 && indice <= MAX - 1){
+            return nota[indice];
+        }
+        return -1.0;
     }
 
     int obtemMedia(){
-        for(int i = 0; i < numNotas; i++){
-            
+        if(numNotas == 0){
+            return -1.0;
         }
+        int soma = 0;
+        for(int i = 0; i < numNotas; i++){
+            soma += nota[i];
+        }
+        return soma / numNotas;
     }
 };
 
