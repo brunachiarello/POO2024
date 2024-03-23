@@ -17,6 +17,7 @@ public:
         for(int i = 0; i < MAX; i++){
             nota[i] = 0;
         }
+        numNotas = 0;
     }
 
     Estudante(string n){
@@ -24,6 +25,7 @@ public:
         for(int i = 0; i < MAX; i++){
             nota[i] = 0;
         }
+        numNotas = 0;
     }
 
     ~Estudante(){}
@@ -38,6 +40,7 @@ public:
 
     bool adicionaNota(double nt){
         if(numNotas < MAX){
+            nota[numNotas] = nt;
             numNotas++;
             return true;
         }
@@ -48,18 +51,18 @@ public:
         return numNotas;
     }
 
-    int obtemNota(int indice){
+    double obtemNota(int indice){
         if(indice >= 0 && indice <= MAX - 1){
             return nota[indice];
         }
-        return -1.0;
+        return -1.0000;
     }
 
-    int obtemMedia(){
+    double obtemMedia(){
         if(numNotas == 0){
-            return -1.0;
+            return -1.0000;
         }
-        int soma = 0;
+        double soma = 0;
         for(int i = 0; i < numNotas; i++){
             soma += nota[i];
         }

@@ -10,25 +10,40 @@ public:
     Robo(){
         posicaoX = 0;
         posicaoY = 0;
-        orientacao = 0;
+        orientacao = {};
     }
 
     ~Robo(){}
 
     void giraDireita(){
         orientacao = 0;
+        posicaoX++;
     }
 
     void giraEsquerda(){
         orientacao = 2;
+        posicaoY--;
     }
 
     void avanca(){
+        if(orientacao == 0){
+            posicaoX++;
 
+        } else if(orientacao == 1){
+            posicaoY++;
+
+        } else if(orientacao == 2){
+            posicaoX--;
+
+        } else if(orientacao == 3){
+            posicaoY--;
+        }
     }
 
-    void posiciona(int x, int y, int orient){
-
+    void posiciona(int x, int y, int ori){
+        posicaoX = x;
+        posicaoY = y;
+        orientacao = ori;
     }
 
     int obtemPosicaoX(){
@@ -44,14 +59,16 @@ public:
     }
 
     void movimenta(string operacao){
-        if(operacao == "D"){
-            giraDireita();
+        for(int i = 0; i < operacao.length(); i++){
+            if(operacao[i] == 'D'){
+                giraDireita();
 
-        } else if(operacao == "E"){
-            giraEsquerda();
+            } else if(operacao[i] == 'E'){
+                giraEsquerda();
 
-        } else if(operacao == "A"){
-            avanca();
+            } else if(operacao[i] == 'A'){
+                avanca();
+            } 
         }
     }
 };

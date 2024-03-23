@@ -17,24 +17,26 @@ public:
     Elevador(int cap, int totalAnd){
         capacidade = cap;
         totalAndares = totalAnd;
+        andarAtual = 0;
+        numPessoas = 0;
     }
 
     ~Elevador(){}
 
     void entra(){
         if(numPessoas < capacidade){
-            capacidade++;
+            numPessoas++;
         }
     }
 
     void sai(){
-        if(capacidade > 0){
-            capacidade--;
+        if(capacidade > 0 && numPessoas > 0){
+            numPessoas--;
         }
     }
 
     void sobe(){
-        if(andarAtual < totalAndares){
+        if(andarAtual < totalAndares - 1){
             andarAtual++;
         }
     }
@@ -63,6 +65,7 @@ public:
 
     void defineTotalAndares(int totalAnd){
         totalAndares = totalAnd;
+        
     }
 
     void defineCapacidade(int cap){
@@ -70,19 +73,22 @@ public:
     }
 
     void movimenta(string operacao){
-        if(operacao == "^"){
-            sobe();
+        for(int i = 0; i < operacao.length(); i++){
+            if(operacao[i] == '^'){
+                sobe();
 
-        } else if(operacao == "v"){
-            desce();
+            } else if(operacao[i] == 'v'){
+                desce();
 
-        } else if(operacao == "+"){
-            entra();
+            } else if(operacao[i] == '+'){
+                entra();
 
-        } else if(operacao == "-"){
-            sai();
+            } else if(operacao[i] == '-'){
+                sai();
+            }
         }
     }
+
 };
 
 int main() {
