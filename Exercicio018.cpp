@@ -28,13 +28,33 @@ public:
     ~Robo(){}
 
     void giraDireita(){
-        orientacao = 0;
-        posicaoX++;
+        if(orientacao == 0){
+            orientacao = 3;
+
+        } else if(orientacao == 1){
+            orientacao = 0;
+
+        } else if(orientacao == 2){
+            orientacao = 1;
+
+        } else if(orientacao == 3){
+            orientacao = 2;
+        }
     }
 
     void giraEsquerda(){
-        orientacao = 2;
-        posicaoX--;
+        if(orientacao == 0){
+            orientacao = 1;
+
+        } else if(orientacao == 1){
+            orientacao = 2;
+
+        } else if(orientacao == 2){
+            orientacao = 3;
+
+        } else if(orientacao == 3){
+            orientacao = 0;
+        }
     }
 
     void avanca(){
