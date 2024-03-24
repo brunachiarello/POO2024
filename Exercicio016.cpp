@@ -36,7 +36,7 @@ public:
     }
 
     void sobe(){
-        if(andarAtual < totalAndares - 1){
+        if(andarAtual < totalAndares){
             andarAtual++;
         }
     }
@@ -88,7 +88,6 @@ public:
             }
         }
     }
-
 };
 
 int main() {

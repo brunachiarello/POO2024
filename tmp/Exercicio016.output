@@ -1,9 +1,9 @@
 Exercicio016:
-- Teste 1: ERRO [DIFF]
-- Teste 2: ERRO [DIFF]
-- Teste 3: ERRO [DIFF]
-- Teste 4: ERRO [DIFF]
-- Teste 5: ERRO [DIFF]
-- Teste 6: ERRO [DIFF]
-ACERTOS = 0/6 [0]
+- Teste 1: OK [0.00]
+- Teste 2: OK [0.00]
+- Teste 3: OK [0.00]
+- Teste 4: OK [0.00]
+- Teste 5: OK [0.00]
+- Teste 6: OK [0.00]
+ACERTOS = 6/6 [0]
 

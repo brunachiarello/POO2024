@@ -2,6 +2,18 @@
 
 using namespace std;
 
+/*
+x aumenta para a direita e diminui para a esquerda
+
+y aumenta para cima e diminui para baixo
+
+orientacao:
+    0 = virado para direita
+    1 = virado para cima
+    2 = virado para a esquerda
+    3 = virado para baixo
+*/
+
 class Robo {
 private:
     int posicaoX, posicaoY, orientacao;
@@ -10,7 +22,7 @@ public:
     Robo(){
         posicaoX = 0;
         posicaoY = 0;
-        orientacao = {};
+        orientacao = 0;
     }
 
     ~Robo(){}
@@ -22,7 +34,7 @@ public:
 
     void giraEsquerda(){
         orientacao = 2;
-        posicaoY--;
+        posicaoX--;
     }
 
     void avanca(){
