@@ -1,9 +1,9 @@
 Exercicio016:
-- Teste 1: OK [0.00]
-- Teste 2: OK [0.00]
+- Teste 1: OK [0.01]
+- Teste 2: OK [0.01]
 - Teste 3: OK [0.00]
-- Teste 4: OK [0.00]
+- Teste 4: OK [0.03]
 - Teste 5: OK [0.00]
 - Teste 6: OK [0.00]
-ACERTOS = 6/6 [0]
+ACERTOS = 6/6 [.05]
 
