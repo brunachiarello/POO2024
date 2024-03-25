@@ -1,27 +1,28 @@
+// Aluno.hpp
+
 #ifndef _ALUNO_HPP
 #define _ALUNO_HPP
 
 #include <string>
 
-#define MAX_PRESENCAS 100
+#define MAX_PRESENCAS 80
 
 using namespace std;
 
 class Aluno {
 private:
   string nome;
-  int numPresencas;
   char presencas[MAX_PRESENCAS];
+  int numPresencas;
 public:
-  Aluno(string n = "");
+  Aluno(string n="");
   ~Aluno();
   string obtemNome();
   void defineNome(string n);
+  bool adicionaPresenca(char p);
+  char obtemPresenca(int i);
   int obtemNumPresencas();
-  void limpaPresencas();
-  bool obtemPresenca(int d, char &p);
   string str();
-  bool definePresenca(int d, char p);
-  bool registraPresenca(char p);
 };
+
 #endif
