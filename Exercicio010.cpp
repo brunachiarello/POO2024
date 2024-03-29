@@ -15,6 +15,7 @@ bool meses30(Data data[5]){
             }
         }
     }
+    return false;
 }
 
 bool meses31(Data data[5]){
@@ -26,6 +27,7 @@ bool meses31(Data data[5]){
             }
         }
     }
+    return false;
 }
 
 bool mesesFev(Data data[5]){
@@ -36,6 +38,7 @@ bool mesesFev(Data data[5]){
             }
         }
     }
+    return false;
 }
 
 bool anoBi(Data data[5]){
@@ -44,47 +47,49 @@ bool anoBi(Data data[5]){
             return true;
         }
     }
+    return false;
 }
 
-void dataValida(Data data[5]){
+bool dataValida(Data data[5]){
     for(int i = 0; i < 5; i++){
         // basicos
         if(data[i].dia < 0 || data[i].dia > 31){ // dia menor que 0 ou maior que 31
-            cout << "-" << endl;
+            return false;
         } 
         
         else if(data[i].mes > 12 || data[i].mes < 1){ // mes maior que 12 ou menor que 1
-            cout << "-" << endl;
+            return false;
         }
 
         // casos especiais
         else if(meses30(data) == true){ // mes de 30 dias
             if(data[i].dia != 30){
-                cout << "-" << endl;
+                return false;
             } else {
-                cout << "+" << endl;
+                return true;
             }
         }
 
         else if(meses31(data) == true){ // mes de 31 dias
             if(data[i].dia != 31){
-                cout << "-" << endl;
+                return false;
             } else {
-                cout << "+" << endl;
+                return true;
             }
         }
 
         else if(mesesFev(data) == true){ // mes é fevereiro
             if(anoBi(data) == true && data[i].dia == 29){ // é bissexto ent tem 29 dias
-                cout << "+" << endl;
+                return true;
             } else if(data[i].dia == 28){
-                cout << "+" << endl;
+                return true;
             } else {
-                cout << "-" << endl;
+                return false;
             }
 
         }
-    }    
+    }  
+    return false;  
 }
 
 int main(){
@@ -92,10 +97,19 @@ int main(){
 
     // Lê 5 datas
     for(int i = 0; i < 5; i++){
-        cin >> data[i].dia >> data[i].mes >> data[i].ano;    
+        cin >> data[i].dia >> data[i].mes >> data[i].ano;
+            
     }
 
-    dataValida(data);
+    for(int i = 0; i < 5; i++){
+    if(dataValida(data) == true){
+        cout << "+" << endl;
+    } else if(dataValida(data) == false){
+        cout << "-" << endl;
+    } else {
+        cout << "*" << endl;
+    }
+    }
 
     return 0;
 }

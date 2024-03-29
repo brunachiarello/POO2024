@@ -204,7 +204,7 @@ if [ "$SCORE" = 1 ] ; then
 	done
 	SCORE_EXERCICIOS=`echo "scale=2;( $EXERCICIOS_OK * 100.0 ) / $EXERCICIOS" | bc`
 	SCORE_TESTES=`echo "scale=2;( $TESTES_OK * 100.0 ) / $TESTES" | bc`
-	echo "- ESCORE = $SCORE_EXERCICIOS% DOS EXERCÍCIOS CORRETOS ($SCORE_TESTES% DOS TESTES CORRETOS)"
+	echo "ESCORE = $SCORE_EXERCICIOS% DOS EXERCÍCIOS CORRETOS ($SCORE_TESTES% DOS TESTES CORRETOS)"
 	
 #	TESTES=`grep ACERTOS tmp/*.output | wc -l`
 #	ACERTOS=`grep ACERTOS tmp/*.output | grep "10/10" | wc -l`
