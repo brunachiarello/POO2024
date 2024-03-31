@@ -7,20 +7,73 @@ struct Data{
 };
 
 
-bool dataValida(const Data &data){
-// mes 30 válido
-    if(data.mes == 2 && data.dia > 28 && data.ano % 4 != 0 ){ // se o mês for 2 e o dia for maior que 28 sem ser ano bissexto retorna false
-        return false;
-    } else if(data.mes == 2 && data.dia > 28 && data.ano % 4 == 0 ) { // se o mês for 2 e o dia for maior que 28 e ano bissexto retorna false
+bool anoBissexto(Data data){
+    if (data.ano % 400 == 0){
         return true;
-    } else if(data.dia > 30 && (data.mes == 4 || data.mes == 6 || data.mes == 9 || data.mes == 11)){ // se dia for maior que 30 e mês não é de 30 retorna false
+    } else if ((data.ano % 4 == 0) && (data.ano % 100 != 0)) {
+        return true;
+    } else {
         return false;
-    } 
-// mes 31 valido
-// dia valido
-    return false;
+    }
 }
 
+
+void dataValida(Data data[5]){
+    int dataInvalida = 0;
+
+    for (int i = 0; i < 5; i++){
+        if (data[i].dia >= 1 && data[i].dia <= 31 && data[i].mes >= 1 && data[i].mes <= 12){ // mes e dia válido 
+
+            if (data[i].mes == 2){ // mes é fevereiro
+
+                if (anoBissexto(data[i]) == true){ // ano é bissexto
+                    if (data[i].dia == 29){
+                        cout << "+" << endl;
+                    } else {
+                        cout << "-" << endl;
+                        dataInvalida++;
+                    }
+
+                } else { // ano não é bissexto
+                    if (data[i].dia <= 28){
+                        cout << "+" << endl;
+                    } else {
+                        cout << "-" << endl;
+                        dataInvalida++;
+                    }
+                }
+
+            } else { // mes não é fevereiro
+                if ((data[i].mes == 4) || (data[i].mes == 6) || (data[i].mes == 9) || (data[i].mes == 11)){ // mes de 30 dias
+                        if (data[i].dia <= 30){ 
+                            cout << "+" << endl;
+                        } else {
+                            cout << "-" << endl;
+                            dataInvalida++;
+                        }
+
+                } else if ((data[i].mes == 1) || (data[i].mes == 3) || (data[i].mes == 5) || (data[i].mes == 7) || // mes de 31 dias
+                            (data[i].mes == 8) || (data[i].mes == 10) || (data[i].mes == 12)){ 
+
+                    if (data[i].dia <= 31){
+                        cout << "+" << endl;
+                    } else {
+                        cout << "-" << endl;
+                        dataInvalida++;
+                    }
+                }
+            }
+
+        } else { // mes e dia inválido
+            cout << "-" << endl;
+            dataInvalida++;
+        }
+    }
+
+    if (dataInvalida == 5){ // 5 datas inválidas
+         cout << "*" << endl;
+    }
+}
 
 int main(){
     Data data[5];
@@ -28,18 +81,9 @@ int main(){
     // Lê 5 datas
     for(int i = 0; i < 5; i++){
         cin >> data[i].dia >> data[i].mes >> data[i].ano;
-            
     }
 
-    for(int i = 0; i < 5; i++){
-    if(dataValida(*data) == true){
-        cout << "+" << endl;
-    } else if(dataValida(*data) == false){
-        cout << "-" << endl;
-    } else {
-        cout << "*" << endl;
-    }
-    }
+    dataValida(data);
 
     return 0;
 }
