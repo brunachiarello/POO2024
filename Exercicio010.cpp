@@ -32,7 +32,6 @@ void dataValida(Data data[5]){
                             cout << "+" << endl;
                             dataValida[a] = data[i];
                             a++;
-                            break;
                         } else {
                             cout << "-" << endl;
                             dataInvalida++;
