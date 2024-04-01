@@ -8,9 +8,79 @@ using namespace std;
 
 #define MAX_FUNCIONARIOS 10
 
-class Funcionario { /* implementacao da classe Funcionario */ };
+class Funcionario { 
+private:
+    int matriculaFunc;
+    string nomeFunc;
+    float salarioFunc;
+public:
+    Funcionario(){
+        matriculaFunc = 0;
+        nomeFunc = { };
+        salarioFunc = 0.0;
+    }
+    Funcionario(int mFunc, string nFunc, float sFunc){
+        matriculaFunc = mFunc;
+        nomeFunc = nFunc;
+        salarioFunc = sFunc;
+    }
+    ~Funcionario(){}
+    int obtemMatricula(){
+        return matriculaFunc;
+    }
+    string obtemNome(){
+        return nomeFunc;
+    }
+    float obtemSalario(){
+        return salarioFunc;
+    }
+    void defineMatricula(int mFunc){
+        matriculaFunc = mFunc;
+    }
+    void defineNome(string nFunc){
+        nomeFunc = nFunc;
+    }
+    void defineSalario(float sFunc){
+        salarioFunc = sFunc;
+    }
+    string str(){
+        stringstream ss;
+        ss << nomeFunc << " (" << matriculaFunc /*com zeros e tam 10*/<< "): R$" << salarioFunc /*com 2 casas decimais*/<< endl;
+    }
+};
 
-class Empresa { /* implementacao da classe Empresa */ };
+class Empresa {
+private:
+    int numEmp;
+    string razaoSocialEmp;
+    string CNPJ;
+    Funcionario *ponteiroFunc[10];
+public:
+    Empresa(){
+
+    }
+    Empresa(){
+
+    }
+    ~Empresa(){
+
+    }
+    int obtemNumero(){
+
+    }
+    string obtemRazaoSocial(){
+
+    }
+    string obtemCnpj(){
+
+    }
+    Funcionario obtemFuncionario(){
+
+    }
+    Funcionario obtemFuncionarios(){
+        
+    }
+};
 
 int main() {
     Funcionario *empregado[] = {
