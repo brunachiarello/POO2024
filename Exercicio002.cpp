@@ -74,11 +74,29 @@ public:
     string obtemCnpj(){
 
     }
-    Funcionario obtemFuncionario(){
+    Funcionario obtemFuncionario(int indice){
 
     }
-    Funcionario obtemFuncionarios(){
+    Funcionario obtemNumFuncionarios(){
         
+    }
+    void defineNumero(){
+
+    }
+    void defineRazaoSocial(){
+
+    }
+    void defineCnpj(){
+
+    }
+    Funcionario adicionaFuncionario(Funcionario *func){
+
+    }
+    Funcionario calculaFolha(){
+
+    }
+    string str(){
+
     }
 };
 
