@@ -44,8 +44,20 @@ public:
         salarioFunc = sFunc;
     }
     string str(){
-        stringstream ss;
-        ss << nomeFunc << " (" << matriculaFunc /*com zeros e tam 10*/<< "): R$" << salarioFunc /*com 2 casas decimais*/<< endl;
+        stringstream salario;
+        string tudo;
+
+        string matricula = to_string(matriculaFunc);
+        while (matricula.length() < 10) {
+            matricula = "0" + matricula;
+        }
+
+        salario << fixed << setprecision(2) << salarioFunc;
+        string salario_str = salario.str();
+
+        tudo = nomeFunc + " (" + matricula + "): R$" + salario_str;
+
+        return tudo;
     }
 };
 
@@ -54,49 +66,76 @@ private:
     int numEmp;
     string razaoSocialEmp;
     string CNPJ;
-    Funcionario *ponteiroFunc[10];
+    Funcionario* funcionarios[MAX_FUNCIONARIOS];
+    int numFunc;
 public:
     Empresa(){
-
+        numEmp = 0;
+        razaoSocialEmp = " ";
+        CNPJ = "00.000.000/0000-00";
+        numFunc = 0;
     }
-    Empresa(){
-
+    Empresa(int nEmp, string rsEmp, string cnpj){
+        numEmp = nEmp;
+        razaoSocialEmp = rsEmp;
+        CNPJ = cnpj;
+        numFunc = 0;
     }
-    ~Empresa(){
-
-    }
+    ~Empresa(){ }
     int obtemNumero(){
-
+        return numEmp;
     }
     string obtemRazaoSocial(){
-
+        return razaoSocialEmp;
     }
     string obtemCnpj(){
-
+        return CNPJ;
     }
-    Funcionario obtemFuncionario(int indice){
-
+    Funcionario* obtemFuncionario(int indice){
+        if (indice >= 0 && indice < numFunc) {
+            return funcionarios[indice];
+        } else {
+            return nullptr;
+        }
     }
-    Funcionario obtemNumFuncionarios(){
-        
+    int obtemNumFuncionarios(){
+        return numFunc;
     }
-    void defineNumero(){
-
+    void defineNumero(int nEmp){
+        numEmp = nEmp;
     }
-    void defineRazaoSocial(){
-
+    void defineRazaoSocial(string rsEmp){
+        razaoSocialEmp = rsEmp;
     }
-    void defineCnpj(){
-
+    void defineCnpj(string cnpj){
+        CNPJ = cnpj;
     }
-    Funcionario adicionaFuncionario(Funcionario *func){
-
+    bool adicionaFuncionario(Funcionario *func){
+        if (numFunc < MAX_FUNCIONARIOS) {
+            funcionarios[numFunc] = func;
+            numFunc++;
+            return true;
+        } else {
+            return false;
+        }
     }
-    Funcionario calculaFolha(){
-
+    double calculaFolha(){
+        double totalS = 0.0;
+        for (int i = 0; i < numFunc; ++i) {
+            totalS += funcionarios[i]->obtemSalario();
+        }
+        return totalS;
     }
     string str(){
-
+        stringstream ss;
+        ss << numEmp << " - " << razaoSocialEmp << " - CNPJ: " << CNPJ << endl;
+        for (int i = 0; i < numFunc; ++i) {
+            ss << funcionarios[i]->str() << endl;
+        }
+        if (numFunc > 0){
+            ss << "TOTAL DA FOLHA DE PAGAMENTO = " << fixed << setprecision(2) << calculaFolha() << endl;
+        }
+        return ss.str();
     }
 };
 
