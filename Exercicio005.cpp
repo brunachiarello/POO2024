@@ -106,13 +106,15 @@ void CampeonatoBrasileiro :: adicionaClube(Clube &c){ // insere no início
 
 string CampeonatoBrasileiro :: clubeComMaisPontos() const{ // retorna obtemNome do clube
   Nodo *atual = clubes;
-  Nodo *maior = nullptr;
+  string nomeClube = "";
   while (atual != nullptr){
-    if (atual->clube.obtemPontos() > atual->prox.obtemPontos()){
-      maior = atual->clube.obtemNome();
+    if (atual->clube.obtemPontos() > atual->prox->clube.obtemPontos()){
+      nomeClube = atual->clube.obtemNome();
+    } else {
+      atual = atual->prox;
     }
   }
-  return maior;
+  return nomeClube;
 }
 
 int CampeonatoBrasileiro :: pontosDe(string nome) const{ // percorre alista e procura um clube, retorna os pontos dele
