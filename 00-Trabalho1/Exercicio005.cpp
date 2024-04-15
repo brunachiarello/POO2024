@@ -87,10 +87,10 @@ CampeonatoBrasileiro :: CampeonatoBrasileiro(){
 }
 
 CampeonatoBrasileiro :: ~CampeonatoBrasileiro(){ // desalocar a lista
-  Nodo *atual = clubes;
-  while (atual != nullptr){
+  while (clubes != nullptr){
+    Nodo *atual = clubes;
+    clubes = clubes->prox;
     delete atual;
-    atual = atual->prox;
   }
 }
 
@@ -107,7 +107,7 @@ void CampeonatoBrasileiro :: adicionaClube(Clube &c){ // insere no início
 string CampeonatoBrasileiro :: clubeComMaisPontos() const{ // retorna obtemNome do clube
   Nodo *atual = clubes;
   string nomeClube = "";
-  while (atual != nullptr){
+  while (atual != nullptr){ // percorrendo a lista
     if (atual->clube.obtemPontos() > atual->prox->clube.obtemPontos()){
       nomeClube = atual->clube.obtemNome();
     } else {
@@ -119,7 +119,7 @@ string CampeonatoBrasileiro :: clubeComMaisPontos() const{ // retorna obtemNome 
 
 int CampeonatoBrasileiro :: pontosDe(string nome) const{ // percorre alista e procura um clube, retorna os pontos dele
   Nodo *atual = clubes;
-  while (atual != nullptr){
+  while (atual != nullptr){ // percorrendo a lista
     if (atual->clube.obtemNome() == nome){
       return atual->clube.obtemPontos();
     } else {
@@ -130,12 +130,13 @@ int CampeonatoBrasileiro :: pontosDe(string nome) const{ // percorre alista e pr
 }
 
 string CampeonatoBrasileiro :: str() const{
+  stringstream ss;
   Nodo *atual = clubes;
-  while (atual != nullptr){
-    atual->clube.str();
+  while (atual != nullptr){ // percorrendo a lista
+    ss << atual->clube.str() << endl;
     atual = atual->prox;
   }
-  return "";
+  return ss.str();
 }
 
 int main() {
