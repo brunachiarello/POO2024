@@ -13,8 +13,8 @@ private:
     int faixaEtaria;
     string estilo;
 public:
-    Filme(int n=-1, string t="", int f=-1, string e="");
-    ~Filme();
+    Filme(int n=-1, string t="", int f=-1, string e=""){}
+    ~Filme(){}
     int obtemNumero() const{ return numero; }
     string obtemTitulo() const{ return titulo; }
     int obtemFaixaEtaria() const{ return faixaEtaria; }
@@ -58,6 +58,22 @@ vector<string> splitCSV(string linha, char separador=';') {
 int main(){
     vector<Filme> filmes;
     string linha;
+
+    while(getline(cin,linha)){
+        vector<string> campos =  splitCSV(linha, ';');
+        int numero = stoi(campos[0]);
+        string titulo = campos[1];
+        int faixaEtaria = stoi(campos[2]);
+        string estilo = campos[3];
+        Filme filme(numero, titulo, faixaEtaria,estilo);
+        filmes.push_back(filme);
+    }
+
+    sort(filmes.begin(),filmes.end());
+        
+    for(const auto &filme:filmes){
+        cout << filme.str() << endl;
+    }
 
     return 0;
 }
