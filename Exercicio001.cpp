@@ -13,7 +13,12 @@ private:
     int faixaEtaria;
     string estilo;
 public:
-    Filme(int n=-1, string t="", int f=-1, string e=""){}
+    Filme(int n=-1, string t="", int f=-1, string e=""){
+        numero = n;
+        titulo = t;
+        faixaEtaria = f;
+        estilo = e;
+    }
     ~Filme(){}
     int obtemNumero() const{ return numero; }
     string obtemTitulo() const{ return titulo; }
@@ -68,7 +73,7 @@ int main(){
         Filme filme(numero, titulo, faixaEtaria,estilo);
         filmes.push_back(filme);
     }
-
+    
     sort(filmes.begin(),filmes.end());
         
     for(const auto &filme:filmes){
