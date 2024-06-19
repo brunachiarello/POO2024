@@ -6,7 +6,6 @@ using namespace std;
 class Artista {
 protected:
     string nomeArtista;
-    Filmes participacao;
 public:
     Artistas(){}
     ~Artistas(){}

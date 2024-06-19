@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Artistas.cpp"
+#include "Artista.cpp"
 
 using namespace std;
 
