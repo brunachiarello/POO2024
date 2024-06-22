@@ -1,8 +1,17 @@
 #include <iostream>
-#include "Artista.cpp"
 
 using namespace std;
 
-class Diretores : protected Artistas {
-
+class Diretor {
+private:
+    string nomeDiretor;
+public:
+    Diretor(){}
+    ~Diretor(){}
+    void defineNomeDiretor(string nD){
+        nomeDiretor = nD;
+    }
+    string obtemNomeDiretor(){
+        return nomeDiretor;
+    }
 };

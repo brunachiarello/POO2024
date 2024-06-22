@@ -16,13 +16,13 @@ private:
 public:
     Filme(){
         numAtores = 0;
-        diretores = nullptr;
+        diretor = nullptr;
     }
 
     Filme(string nF, int aF){
         nomeFilme = nF;
         anoFilme = aF;
-        diretores = nullptr;
+        diretor = nullptr;
     }
 
     ~Filme(){
@@ -51,7 +51,7 @@ public:
         return diretor;
     }
 
-    Diretor *defineDiretor(Diretor *d){
+    void defineDiretor(Diretor *d){
         diretor = d;
     }
 
@@ -59,8 +59,13 @@ public:
         return numAtores;
     }
 
-    string obtemNomeAtor(){
-        
+    string obtemNomeAtor(int indice){
+        if(indice >= 0 && indice < numAtores) {
+            return atores[indice]->obtemNomeAtor();
+        } else {
+            return "";  
+        }
+       
     }
 
     void adicionaAtor(Ator *ator){
@@ -68,22 +73,31 @@ public:
             atores[numAtores + 1] = ator;
             numAtores++;
         } else {
-            throw "Número máximo de atores atingido!";
+            cout << "Número máximo de atores atingidos!";
         }
         
     }
 
-    void removeAtor(Ator *ator){
-
+    void removeAtor(int indice){
+        if (indice >= 0 && indice < numAtores) {
+            delete atores[indice];
+        for (int i = indice; i < numAtores - 1; i++) {
+            atores[i] = atores[i + 1];
+        }
+        numAtores--;
+        }
     }
 
-    Ator *pesquisaAtor(string nome) const {
-
+    Ator *pesquisaAtor(string nome) {
+        for(int i = 0; i < numAtores; i++) {
+            if(atores[i]->obtemNomeAtor() == nome) {
+                return atores[i];
+            }
+        }
+        return nullptr; 
     }
     
     string str(){
 
     }
-
-
 };

@@ -1,9 +1,18 @@
 #include <iostream>
-#include "Artista.cpp"
 
 using namespace std;
 
-class Atores : protected Artistas {
-
+class Ator {
+private:
+    string nomeAtor;
+public:
+    Ator(){}
+    ~Ator(){}
+    void defineNomeAtor(string nA){
+        nomeAtor = nA;
+    }
+    string obtemNomeAtor(){
+        return nomeAtor;
+    }
 };
 

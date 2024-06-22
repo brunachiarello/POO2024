@@ -1,20 +1,34 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
-#include "Artista.cpp"
 #include "Filme.cpp"
 
 using namespace std;
 
 void consulta(int tipo){
+    if(tipo == 1){
 
+    } else if(tipo == 2){
+
+    } else if(tipo == 3){
+
+    }
 }
 
 void cadastro(int tipo){
+    if(tipo == 1){
 
+    } else if(tipo == 2){
+
+    } else if(tipo == 3){
+        
+    }
 }
 
 int main(){
     vector<string> filmes;
+
+
     while(1){
         cout << "---------- MENU ----------" << endl;
         cout << "1- Consulta" << endl;
@@ -25,7 +39,7 @@ int main(){
         cin >> menu;
 
         if(menu == 1){
-            cout << "selecionado: Consulta" << endl;
+
             cout << "-------- CONSULTA --------" << endl;
             cout << "1- Ator" << endl;
             cout << "2- Diretor" << endl;
@@ -34,22 +48,31 @@ int main(){
             int menuConsulta = 0;
             cin >> menuConsulta;
 
+            if(menuConsulta == 1 || menuConsulta == 2 || menuConsulta == 3){
+                consulta(menuConsulta);
+            } else {
+                break;
+            }
+
         } else if(menu == 2){
-            cout << "selecionado: Cadastro" << endl;
+
             cout << "-------- CADASTRO --------" << endl;
             cout << "1- Ator" << endl;
             cout << "2- Diretor" << endl;
             cout << "3- Filme" << endl;
             cout << "--------------------------" << endl;
+            int menuCadastro = 0;
+            cin >> menuCadastro;
 
-        } else if(menu == -1){
-            break;
+            if(menuCadastro == 1 || menuCadastro == 2 || menuCadastro == 3){
+                consulta(menuCadastro);
+            } else {
+                break;
+            }
+
         } else {
-            throw "Número inválido!"
             break;
         } 
     }
-
-
     return 0;
 }
