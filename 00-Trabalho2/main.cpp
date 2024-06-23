@@ -5,117 +5,55 @@
 
 using namespace std;
 
-void lerDiretores(vector<Diretor>& diretores) {
-    ifstream arquivo("BD_Diretores.txt");
-    if (!arquivo.is_open()) {
-        cerr << "Erro ao abrir o arquivo!" << endl;
-        return;
-    }
+void consultaInformacoesFilme(vector<Filme>& filmes) {
+    string nomeFilme;
+    cout << "Nome do Filme: ";
+    cin.ignore();
+    getline(cin, nomeFilme);
 
-    string linha;
-    Diretor* diretorAtual = nullptr;
-
-    while (getline(arquivo, linha)) {
-        if (linha.empty()) continue;
-
-        if (linha[0] == '#') {
-            if (diretorAtual != nullptr) {
-                diretores.push_back(*diretorAtual);
-                delete diretorAtual;
-                diretorAtual = nullptr;
-            }
-        } else if (linha[0] == '-') {
-            if (diretorAtual != nullptr) {
-                string nomeFilme = linha.substr(2, linha.rfind('(') - 3);
-                diretorAtual->adicionaFilme(nomeFilme);
-            }
-        } else {
-            diretorAtual = new Diretor(linha);
+    for(auto& filme : filmes) {
+        if(filme.obtemNomeFilme() == nomeFilme) {
+            cout << filme.str() << endl;
+            break;
         }
     }
-
-    if (diretorAtual != nullptr) {
-        diretores.push_back(*diretorAtual);
-        delete diretorAtual;
-    }
-
-    arquivo.close();
 }
 
-void lerAtores(vector<Ator>& atores) {
-    ifstream arquivo("BD_Atores.txt");
-    if (!arquivo) {
-        cerr << "Erro ao abrir o arquivo!" << endl;
-        return;
-    }
+void consultaFilmesPorAtor(vector<Ator>& atores) {
+    string nomeAtor;
+    cout << "Nome do Ator: ";
+    cin.ignore();
+    getline(cin, nomeAtor);
 
-    string linha;
-    Ator* atorAtual = nullptr;
-
-    while (getline(arquivo, linha)) {
-        if (linha.empty()) continue;
-
-        if (linha[0] == '#') {
-            if (atorAtual != nullptr) {
-                atores.push_back(*atorAtual);
-                delete atorAtual;
-                atorAtual = nullptr;
+    for(auto& ator : atores) {
+        if(ator.obtemNomeAtor() == nomeAtor) {
+            vector<string> filmesAtor = ator.obtemFilmes();
+            for(const auto& filme : filmesAtor) {
+                cout << filme << endl;
             }
-        } else if (linha[0] == '-') {
-            if (atorAtual != nullptr) {
-                string nomeFilme = linha.substr(2, linha.rfind('(') - 3);
-                atorAtual->adicionaFilme(nomeFilme);
+            break;
+        }
+    }
+}
+
+void consultaFilmesPorDiretor(vector<Diretor>& diretores) {
+    string nomeDiretor;
+    cout << "Nome do Diretor: ";
+    cin.ignore();
+    getline(cin, nomeDiretor);
+
+    for(auto& diretor : diretores) {
+        if(diretor.obtemNomeDiretor() == nomeDiretor) {
+            vector<string> filmesDiretor = diretor.obtemFilmes();
+            for(const auto& filme : filmesDiretor) {
+                cout << filme << endl;
             }
-        } else {
-            atorAtual = new Ator(linha);
+            break;
         }
     }
-
-    if (atorAtual != nullptr) {
-        atores.push_back(*atorAtual);
-        delete atorAtual;
-    }
-
-    arquivo.close();
 }
 
-void atualizarDiretores(vector<Diretor>& diretores) {
-    ofstream arquivo("BD_Diretores.txt");
-    if (!arquivo) {
-        cerr << "Erro ao abrir o arquivo!\n";
-        return;
-    }
-
-    for (auto& diretor : diretores) {
-        arquivo << "#\n";
-        arquivo << diretor.obtemNomeDiretor() << "\n";
-        for (const auto& filme : diretor.obtemFilmes()) {
-            arquivo << "--" << filme << "\n";
-        }
-    }
-
-    arquivo.close();
-}
-
-void atualizarAtores(vector<Ator>& atores) {
-    ofstream arquivo("BD_Atores.txt");
-    if (!arquivo) {
-        cerr << "Erro ao abrir o arquivo!" << endl;
-        return;
-    }
-
-    for (auto& ator : atores) {
-        arquivo << "#\n";
-        arquivo << ator.obtemNomeAtor() << "\n";
-        for (const auto& filme : ator.obtemFilmes()) {
-            arquivo << "--" << filme << "\n";
-        }
-    }
-
-    arquivo.close();
-}
-
-void cadastrarAtor(vector<Ator>& atores) {
+void cadastroAtor(vector<Ator>& atores) {
     string nome;
     cout << "Nome do Ator: ";
     cin.ignore();
@@ -123,7 +61,7 @@ void cadastrarAtor(vector<Ator>& atores) {
     atores.push_back(Ator(nome));
 }
 
-void cadastrarDiretor(vector<Diretor>& diretores) {
+void cadastroDiretor(vector<Diretor>& diretores) {
     string nome;
     cout << "Nome do Diretor: ";
     cin.ignore();
@@ -131,7 +69,7 @@ void cadastrarDiretor(vector<Diretor>& diretores) {
     diretores.push_back(Diretor(nome));
 }
 
-void cadastrarFilme(vector<Filme>& filmes, vector<Ator>& atores, vector<Diretor>& diretores) {
+void cadastroFilme(vector<Filme>& filmes, vector<Ator>& atores, vector<Diretor>& diretores) {
     string nomeFilme;
     int ano;
     string nomeDiretor;
@@ -150,8 +88,8 @@ void cadastrarFilme(vector<Filme>& filmes, vector<Ator>& atores, vector<Diretor>
     cin.ignore();
     getline(cin, nomeDiretor);
 
-    for (auto& diretor : diretores) {
-        if (diretor.obtemNomeDiretor() == nomeDiretor) {
+    for(auto& diretor : diretores) {
+        if(diretor.obtemNomeDiretor() == nomeDiretor) {
             filme.defineDiretor(&diretor);
             diretor.adicionaFilme(nomeFilme);
             break;
@@ -161,63 +99,120 @@ void cadastrarFilme(vector<Filme>& filmes, vector<Ator>& atores, vector<Diretor>
     cout << "Nome do Ator: ";
     getline(cin, nomeAtor);
 
-    for (auto& ator : atores) {
-        if (ator.obtemNomeAtor() == nomeAtor) {
+    for(auto& ator : atores) {
+        if(ator.obtemNomeAtor() == nomeAtor) {
             filme.adicionaAtor(&ator);
             ator.adicionaFilme(nomeFilme);
             break;
         }
     }
-
     filmes.push_back(filme);
 }
 
-void consultarFilmesPorAtor(vector<Ator>& atores) {
-    string nomeAtor;
-    cout << "Nome do Ator: ";
-    cin.ignore();
-    getline(cin, nomeAtor);
+void atualizaDiretor(vector<Diretor>& diretores) {
+    ofstream arquivo("BD_Diretores.txt");
+    if(!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo!\n";
+        return;
+    }
 
-    for (auto& ator : atores) {
-        if (ator.obtemNomeAtor() == nomeAtor) {
-            vector<string> filmesAtor = ator.obtemFilmes();
-            for (const auto& filme : filmesAtor) {
-                cout << filme << endl;
-            }
-            break;
+    for(auto& diretor : diretores) {
+        arquivo << "#\n";
+        arquivo << diretor.obtemNomeDiretor() << "\n";
+        for (const auto& filme : diretor.obtemFilmes()) {
+            arquivo << "--" << filme << "\n";
         }
     }
+    arquivo.close();
 }
 
-void consultarFilmesPorDiretor(vector<Diretor>& diretores) {
-    string nomeDiretor;
-    cout << "Nome do Diretor: ";
-    cin.ignore();
-    getline(cin, nomeDiretor);
+void atualizaAtor(vector<Ator>& atores) {
+    ofstream arquivo("BD_Atores.txt");
+    if(!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo!" << endl;
+        return;
+    }
 
-    for (auto& diretor : diretores) {
-        if (diretor.obtemNomeDiretor() == nomeDiretor) {
-            vector<string> filmesDiretor = diretor.obtemFilmes();
-            for (const auto& filme : filmesDiretor) {
-                cout << filme << endl;
-            }
-            break;
+    for(auto& ator : atores) {
+        arquivo << "#\n";
+        arquivo << ator.obtemNomeAtor() << "\n";
+        for (const auto& filme : ator.obtemFilmes()) {
+            arquivo << "--" << filme << "\n";
         }
     }
+    arquivo.close();
 }
 
-void consultarInformacoesFilme(vector<Filme>& filmes) {
-    string nomeFilme;
-    cout << "Nome do Filme: ";
-    cin.ignore();
-    getline(cin, nomeFilme);
+void leDiretor(vector<Diretor>& diretores) {
+    ifstream arquivo("BD_Diretores.txt");
+    if(!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo!" << endl;
+        return;
+    }
 
-    for (auto& filme : filmes) {
-        if (filme.obtemNomeFilme() == nomeFilme) {
-            cout << filme.str() << endl;
-            break;
+    string linha;
+    Diretor* diretorAtual = nullptr;
+
+    while(getline(arquivo, linha)) {
+        if(linha.empty()) continue;
+
+        if(linha[0] == '#') {
+            if(diretorAtual != nullptr) {
+                diretores.push_back(*diretorAtual);
+                delete diretorAtual;
+                diretorAtual = nullptr;
+            }
+        } else if(linha[0] == '-') {
+            if(diretorAtual != nullptr) {
+                string nomeFilme = linha.substr(2, linha.rfind('(') - 3);
+                diretorAtual->adicionaFilme(nomeFilme);
+            }
+        } else {
+            diretorAtual = new Diretor(linha);
         }
     }
+
+    if(diretorAtual != nullptr) {
+        diretores.push_back(*diretorAtual);
+        delete diretorAtual;
+    }
+    arquivo.close();
+}
+
+void leAtor(vector<Ator>& atores) {
+    ifstream arquivo("BD_Atores.txt");
+    if(!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo!" << endl;
+        return;
+    }
+
+    string linha;
+    Ator* atorAtual = nullptr;
+
+    while(getline(arquivo, linha)) {
+        if(linha.empty()) continue;
+
+        if(linha[0] == '#') {
+            if(atorAtual != nullptr) {
+                atores.push_back(*atorAtual);
+                delete atorAtual;
+                atorAtual = nullptr;
+            }
+        } else if(linha[0] == '-') {
+            if(atorAtual != nullptr) {
+                string nomeFilme = linha.substr(2, linha.rfind('(') - 3);
+                atorAtual->adicionaFilme(nomeFilme);
+            }
+        } else {
+            atorAtual = new Ator(linha);
+        }
+    }
+
+    if (atorAtual != nullptr) {
+        atores.push_back(*atorAtual);
+        delete atorAtual;
+    }
+    arquivo.close();
 }
 
 int main(){
@@ -225,10 +220,13 @@ int main(){
     vector<Ator> atores;
     vector<Diretor> diretores;
 
+    leDiretor(diretores);
+    leAtor(atores);
+
     cout << "---------- MENU ----------" << endl;
     cout << "Consulta" << endl;
-    cout << "1- de atores" << endl;
-    cout << "2- de diretores" << endl;
+    cout << "1- por atores" << endl;
+    cout << "2- por diretores" << endl;
     cout << "3- de filmes" << endl;
     cout << "Cadastro" << endl;
     cout << "4- de atores" << endl;
@@ -254,6 +252,9 @@ int main(){
     } else {
         cerr << "Número inválido!" << endl;
     }
+
+    atualizaDiretor(diretores);
+    atualizaAtor(atores);
 
     return 0;
 }
