@@ -13,51 +13,49 @@ class Filme {
 private:
     string nomeFilme;
     int anoFilme;
-    vector<Ator*> atores; // Vetor de ponteiros para atores
-    Diretor *diretor; // Ponteiro para o diretor do filme
+    vector<Ator*> atores;
+    Diretor *diretor; 
 public:
-    Filme(){
+    Filme(){ // Construtor vazio
         anoFilme = 0;
         diretor = nullptr;
     }
 
-    Filme(string nF, int aF){
+    Filme(string nF, int aF){ // Construtor que recebe o nome e o ano de lançamento
         nomeFilme = nF;
         anoFilme = aF;
         diretor = nullptr;
     }
 
-    ~Filme(){}
-
-    void definenNomeFilme(string nF){
+    void definenNomeFilme(string nF){ // Alterar o nome do filme
         nomeFilme = nF;
     }
 
-    string obtemNomeFilme(){
+    string obtemNomeFilme(){ // Obter o nome do filme
         return nomeFilme;
     }
 
-    void defineAnoFilme(int aF){
+    void defineAnoFilme(int aF){ // Alterar o ano de lançamento do filme
         anoFilme = aF;
     }
 
-    int obtemAnoFilme(){
+    int obtemAnoFilme(){ // Obter o ano de lançamento do filme
         return anoFilme;
     }
 
-    Diretor *obtemDiretor(){
+    Diretor *obtemDiretor(){ // Obter o diretor do filme
         return diretor;
     }
 
-    void defineDiretor(Diretor *d){
+    void defineDiretor(Diretor *d){ // Alterar o diretor do filme
         diretor = d;
     }
 
-    int obtemNumAtores(){
+    int obtemNumAtores(){ // Obter o número de atores/atrizes
         return atores.size();
     }
 
-    string obtemNomeAtor(int indice){
+    string obtemNomeAtor(int indice){ // Obter nome do ator/atriz
         if (indice >= 0 && indice < atores.size()) {
             return atores[indice]->obtemNomeAtor();
         }
@@ -65,7 +63,7 @@ public:
        
     }
 
-    void adicionaAtor(Ator *ator){
+    void adicionaAtor(Ator *ator){ // Adicionar um ator/atriz
         if (atores.size() < 10) {
             atores.push_back(ator);
         } else {
@@ -74,14 +72,14 @@ public:
         
     }
 
-    void removeAtor(Ator *ator){
+    void removeAtor(Ator *ator){ // Remover um ator/atriz
         auto it = remove(atores.begin(), atores.end(), ator);
         if (it != atores.end()) {
             atores.erase(it);
         }
     }
 
-    Ator *pesquisaAtor(string nome) {
+    Ator *pesquisaAtor(string nome) { // Pesquisar se um ator faz parte do elenco do filme
         for (const auto& ator : atores) {
             if (ator->obtemNomeAtor() == nome) {
                 return ator;
@@ -90,7 +88,7 @@ public:
         return nullptr;
     }
     
-    string str(){
+    string str(){ // Obter todas as informações do filme
         stringstream ss;
         ss << "Filme: " << nomeFilme << " (" << anoFilme << anoFilme << ")" << endl;
         ss << "Diretor: " << (diretor ? diretor->obtemNomeDiretor() : "N/A") << endl;

@@ -9,18 +9,20 @@ private:
     string nomeAtor;
     vector<string> filmes;
 public:
-    Ator(){}
-    ~Ator(){}
-    void defineNomeAtor(string nA){
+    Ator(){} // Construtor vazio
+    Ator(string nA){ // Construtor que recebe o nome do ator/atriz
         nomeAtor = nA;
     }
-    string obtemNomeAtor(){
+    void defineNomeAtor(string nA){ // Alterar o nome do ator/atriz
+        nomeAtor = nA;
+    }
+    string obtemNomeAtor(){ // Obter o nome do ator/atriz
         return nomeAtor;
     }
-    void adicionaFilme(string filme){
+    void adicionaFilme(string filme){  // Adicionar filme
         filmes.push_back(filme);
     }
-    vector<string> obtemFIlmes(){
+    vector<string> obtemFilmes(){ // Obter filme
         return filmes;
     }
 };
