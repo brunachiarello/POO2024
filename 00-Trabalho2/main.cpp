@@ -5,74 +5,51 @@
 
 using namespace std;
 
-void consulta(int tipo){
-    if(tipo == 1){
-
-    } else if(tipo == 2){
-
-    } else if(tipo == 3){
-
+void lerArquivo(const string& nomeArquivo, vector<string>& dados) {
+    ifstream arquivo(nomeArquivo);
+    if (arquivo.is_open()) {
+        string linha;
+        while (getline(arquivo, linha)) {
+            dados.push_back(linha);
+        }
+        arquivo.close();
     }
 }
 
-void cadastro(int tipo){
-    if(tipo == 1){
-
-    } else if(tipo == 2){
-
-    } else if(tipo == 3){
-        
+void escreverArquivo(const string& nomeArquivo, const vector<string>& dados) {
+    ofstream arquivo(nomeArquivo);
+    if (arquivo.is_open()) {
+        for (const string& linha : dados) {
+            arquivo << linha << endl;
+        }
+        arquivo.close();
     }
 }
 
 int main(){
-    vector<string> filmes;
+    vector<Filme> filmes;
+    vector<Ator> atores;
+    vector<Diretor> diretores;
 
+    lerArquivo("BD_Atores.txt");
+    lerArquivo("BD_Diretores.txt");
 
-    while(1){
-        cout << "---------- MENU ----------" << endl;
-        cout << "1- Consulta" << endl;
-        cout << "2- Cadastro" << endl;
-        cout << "--------------------------" << endl;
+    cout << "---------- MENU ----------" << endl;
+    cout << "Consulta" << endl;
+    cout << "1- de atores" << endl;
+    cout << "2- de diretores" << endl;
+    cout << "3- de filmes" << endl;
+    cout << "Cadastro" << endl;
+    cout << "4- de atores" << endl;
+    cout << "5- de diretores" << endl;
+    cout << "6- de filmes" << endl;
+    cout << "--------------------------" << endl;
 
-        int menu = 0;
-        cin >> menu;
+    int menu = 0;
+    cin >> menu;
 
-        if(menu == 1){
+    escreverArquivo("BD_Atores.txt");
+    escreverArquivo("BD_Diretores.txt");
 
-            cout << "-------- CONSULTA --------" << endl;
-            cout << "1- Ator" << endl;
-            cout << "2- Diretor" << endl;
-            cout << "3- Filme" << endl;
-            cout << "--------------------------" << endl;
-            int menuConsulta = 0;
-            cin >> menuConsulta;
-
-            if(menuConsulta == 1 || menuConsulta == 2 || menuConsulta == 3){
-                consulta(menuConsulta);
-            } else {
-                break;
-            }
-
-        } else if(menu == 2){
-
-            cout << "-------- CADASTRO --------" << endl;
-            cout << "1- Ator" << endl;
-            cout << "2- Diretor" << endl;
-            cout << "3- Filme" << endl;
-            cout << "--------------------------" << endl;
-            int menuCadastro = 0;
-            cin >> menuCadastro;
-
-            if(menuCadastro == 1 || menuCadastro == 2 || menuCadastro == 3){
-                consulta(menuCadastro);
-            } else {
-                break;
-            }
-
-        } else {
-            break;
-        } 
-    }
     return 0;
 }

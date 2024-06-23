@@ -1,10 +1,13 @@
 #include <iostream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 class Diretor {
 private:
     string nomeDiretor;
+    vector<string> filmes;
 public:
     Diretor(){}
     ~Diretor(){}
@@ -13,5 +16,11 @@ public:
     }
     string obtemNomeDiretor(){
         return nomeDiretor;
+    }
+    void adicionaFilme(string filme){
+        filmes.push_back(filme);
+    }
+    vector<string> obtemFIlmes(){
+        return filmes;
     }
 };

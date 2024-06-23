@@ -1,8 +1,11 @@
 #include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <algorithm>
+
 #include "Diretor.cpp"
 #include "Ator.cpp"
-
-#define MAX_ATORES 10
 
 using namespace std;
 
@@ -10,12 +13,11 @@ class Filme {
 private:
     string nomeFilme;
     int anoFilme;
-    Ator *atores[MAX_ATORES];
-    int numAtores;
-    Diretor *diretor;
+    vector<Ator*> atores; // Vetor de ponteiros para atores
+    Diretor *diretor; // Ponteiro para o diretor do filme
 public:
     Filme(){
-        numAtores = 0;
+        anoFilme = 0;
         diretor = nullptr;
     }
 
@@ -25,11 +27,7 @@ public:
         diretor = nullptr;
     }
 
-    ~Filme(){
-        for(int i = 0; i < numAtores; i++){
-            delete atores[i];
-        }
-    }
+    ~Filme(){}
 
     void definenNomeFilme(string nF){
         nomeFilme = nF;
@@ -56,48 +54,50 @@ public:
     }
 
     int obtemNumAtores(){
-        return numAtores;
+        return atores.size();
     }
 
     string obtemNomeAtor(int indice){
-        if(indice >= 0 && indice < numAtores) {
+        if (indice >= 0 && indice < atores.size()) {
             return atores[indice]->obtemNomeAtor();
-        } else {
-            return "";  
         }
+        return "";
        
     }
 
     void adicionaAtor(Ator *ator){
-        if(numAtores < MAX_ATORES){
-            atores[numAtores + 1] = ator;
-            numAtores++;
+        if (atores.size() < 10) {
+            atores.push_back(ator);
         } else {
-            cout << "Número máximo de atores atingidos!";
+            cerr << "Máximo de atores atingido!" << endl;
         }
         
     }
 
-    void removeAtor(int indice){
-        if (indice >= 0 && indice < numAtores) {
-            delete atores[indice];
-        for (int i = indice; i < numAtores - 1; i++) {
-            atores[i] = atores[i + 1];
-        }
-        numAtores--;
+    void removeAtor(Ator *ator){
+        auto it = remove(atores.begin(), atores.end(), ator);
+        if (it != atores.end()) {
+            atores.erase(it);
         }
     }
 
     Ator *pesquisaAtor(string nome) {
-        for(int i = 0; i < numAtores; i++) {
-            if(atores[i]->obtemNomeAtor() == nome) {
-                return atores[i];
+        for (const auto& ator : atores) {
+            if (ator->obtemNomeAtor() == nome) {
+                return ator;
             }
         }
-        return nullptr; 
+        return nullptr;
     }
     
     string str(){
-
+        stringstream ss;
+        ss << "Filme: " << nomeFilme << " (" << anoFilme << anoFilme << ")" << endl;
+        ss << "Diretor: " << (diretor ? diretor->obtemNomeDiretor() : "N/A") << endl;
+        ss << "Atores: " << endl;
+        for (const auto& ator : atores) {
+            ss << "- " + ator->obtemNomeAtor() << endl;
+        }
+        return ss.str();
     }
 };
