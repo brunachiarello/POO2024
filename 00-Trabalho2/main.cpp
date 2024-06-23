@@ -225,8 +225,6 @@ int main(){
     vector<Ator> atores;
     vector<Diretor> diretores;
 
-
-
     cout << "---------- MENU ----------" << endl;
     cout << "Consulta" << endl;
     cout << "1- de atores" << endl;
@@ -241,7 +239,21 @@ int main(){
     int menu = 0;
     cin >> menu;
 
-   
+    if(menu == 1){
+
+    } else if(menu == 2){
+
+    } else if(menu == 3){
+
+    } else if(menu == 4){
+
+    } else if(menu == 5){
+        
+    } else if(menu == 6){
+
+    } else {
+        cerr << "Número inválido!" << endl;
+    }
 
     return 0;
 }
