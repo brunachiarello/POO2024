@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void consultaFilmes(vector<Filme>& filmes) {
+void consultaFilmes(vector<Filme>& filmes) { // Faz a consulta de filmes
     string nomeFilme;
     cout << "Nome do Filme: ";
     cin.ignore();
@@ -19,7 +19,7 @@ void consultaFilmes(vector<Filme>& filmes) {
     }
 }
 
-void consultaFilmesPorAtor(vector<Ator>& atores) {
+void consultaFilmesPorAtor(vector<Ator>& atores) { // Faz a consulta de filmes por ator
     string nomeAtor;
     cout << "Nome do Ator: ";
     cin.ignore();
@@ -36,7 +36,7 @@ void consultaFilmesPorAtor(vector<Ator>& atores) {
     }
 }
 
-void consultaFilmesPorDiretor(vector<Diretor>& diretores) {
+void consultaFilmesPorDiretor(vector<Diretor>& diretores) { // Faz a consulta de filmes por diretor
     string nomeDiretor;
     cout << "Nome do Diretor: ";
     cin.ignore();
@@ -53,7 +53,7 @@ void consultaFilmesPorDiretor(vector<Diretor>& diretores) {
     }
 }
 
-void cadastroAtor(vector<Ator>& atores) {
+void cadastroAtor(vector<Ator>& atores) { // Faz o cadastro de um ator
     string nome;
     cout << "Nome do Ator: ";
     cin.ignore();
@@ -61,7 +61,7 @@ void cadastroAtor(vector<Ator>& atores) {
     atores.push_back(Ator(nome));
 }
 
-void cadastroDiretor(vector<Diretor>& diretores) {
+void cadastroDiretor(vector<Diretor>& diretores) { // Faz o cadastro de um diretor
     string nome;
     cout << "Nome do Diretor: ";
     cin.ignore();
@@ -69,7 +69,7 @@ void cadastroDiretor(vector<Diretor>& diretores) {
     diretores.push_back(Diretor(nome));
 }
 
-void cadastroFilme(vector<Filme>& filmes, vector<Ator>& atores, vector<Diretor>& diretores) {
+void cadastroFilme(vector<Filme>& filmes, vector<Ator>& atores, vector<Diretor>& diretores) { // Faz o cadastro de um filme
     string nomeFilme;
     int ano;
     string nomeDiretor;
@@ -109,7 +109,7 @@ void cadastroFilme(vector<Filme>& filmes, vector<Ator>& atores, vector<Diretor>&
     filmes.push_back(filme);
 }
 
-void atualizaDiretor(vector<Diretor>& diretores) {
+void atualizaDiretor(vector<Diretor>& diretores) { // Atualiza o arquivo de diretores
     ofstream arquivo("BD_Diretores.txt");
     if(!arquivo.is_open()) {
         cerr << "Erro ao abrir o arquivo!\n";
@@ -126,7 +126,7 @@ void atualizaDiretor(vector<Diretor>& diretores) {
     arquivo.close();
 }
 
-void atualizaAtor(vector<Ator>& atores) {
+void atualizaAtor(vector<Ator>& atores) { // Atualiza o arquivo de atores
     ofstream arquivo("BD_Atores.txt");
     if(!arquivo.is_open()) {
         cerr << "Erro ao abrir o arquivo!" << endl;
@@ -143,7 +143,7 @@ void atualizaAtor(vector<Ator>& atores) {
     arquivo.close();
 }
 
-void leDiretor(vector<Diretor>& diretores) {
+void leDiretor(vector<Diretor>& diretores) { // Faz a leitura de diretores
     ifstream arquivo("BD_Diretores.txt");
     if(!arquivo.is_open()) {
         cerr << "Erro ao abrir o arquivo!" << endl;
@@ -179,7 +179,7 @@ void leDiretor(vector<Diretor>& diretores) {
     arquivo.close();
 }
 
-void leAtor(vector<Ator>& atores) {
+void leAtor(vector<Ator>& atores) { // Faz a leitura de atores
     ifstream arquivo("BD_Atores.txt");
     if(!arquivo.is_open()) {
         cerr << "Erro ao abrir o arquivo!" << endl;
