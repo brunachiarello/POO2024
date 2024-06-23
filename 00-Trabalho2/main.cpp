@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void consultaInformacoesFilme(vector<Filme>& filmes) {
+void consultaFilmes(vector<Filme>& filmes) {
     string nomeFilme;
     cout << "Nome do Filme: ";
     cin.ignore();
@@ -222,35 +222,40 @@ int main(){
 
     leDiretor(diretores);
     leAtor(atores);
+    
+    while(1){
+        cout << "---------- MENU ----------" << endl;
+        cout << "Consulta" << endl;
+        cout << "1- por atores" << endl;
+        cout << "2- por diretores" << endl;
+        cout << "3- de filmes" << endl;
+        cout << "Cadastro" << endl;
+        cout << "4- de atores" << endl;
+        cout << "5- de diretores" << endl;
+        cout << "6- de filmes" << endl;
+        cout << "Sair: -1" << endl;
+        cout << "--------------------------" << endl;
 
-    cout << "---------- MENU ----------" << endl;
-    cout << "Consulta" << endl;
-    cout << "1- por atores" << endl;
-    cout << "2- por diretores" << endl;
-    cout << "3- de filmes" << endl;
-    cout << "Cadastro" << endl;
-    cout << "4- de atores" << endl;
-    cout << "5- de diretores" << endl;
-    cout << "6- de filmes" << endl;
-    cout << "--------------------------" << endl;
+        int menu = 0;
+        cin >> menu;
 
-    int menu = 0;
-    cin >> menu;
-
-    if(menu == 1){
-
-    } else if(menu == 2){
-
-    } else if(menu == 3){
-
-    } else if(menu == 4){
-
-    } else if(menu == 5){
-        
-    } else if(menu == 6){
-
-    } else {
-        cerr << "Número inválido!" << endl;
+        if(menu == 1){
+            consultaFilmesPorAtor(atores);
+        } else if(menu == 2){
+            consultaFilmesPorDiretor(diretores);
+        } else if(menu == 3){
+            consultaFilmes(filmes);
+        } else if(menu == 4){
+            cadastroAtor(atores);
+        } else if(menu == 5){
+            cadastroDiretor(diretores);
+        } else if(menu == 6){
+            cadastroFilme(filmes, atores, diretores);
+        } else if(menu == -1){
+            break;
+        } else {
+            cerr << "Número inválido!" << endl;
+        }
     }
 
     atualizaDiretor(diretores);

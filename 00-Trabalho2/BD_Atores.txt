@@ -1,18 +1,18 @@
 #
 Samuel L. Jackson
---Os Oito Odiados (2015)
---Django Livre (2012)
---Bastardos Inglórios (2009)
---Kill Bill: Vol. 2 (2004)
---Jackie Brown (1997)
---Tempo de Violência (1994)
+--Os Oito Odiados
+--Django Livre
+--Bastardos Inglórios
+--Kill Bill: Vol. 2
+--Jackie Brown
+--Tempo de Violência
 #
 Scarlett Johansson
---Vicky Cristina Barcelona (2008)
---Scoop - O Grande Furo (2006)
---O Grande Truque (2006)
---Match Point - Ponto Final (2005)
+--Vicky Cristina Barcelona
+--Scoop - O Grande Furo
+--O Grande Truque
+--Match Point - Ponto Final
 #
 Tom Cruise
---Guerra dos Mundos (2005)
---Minority Report - A Nova Lei (2002)
+--Guerra dos Mundos
+--Minority Report - A Nova Lei

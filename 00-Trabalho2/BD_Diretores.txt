@@ -1,18 +1,18 @@
 #
 Woody Allen
---O Homem Irracional (2015)
---Magia ao Luar (2014)
---Meia-Noite em Paris (2011)
---Você Vai Conhecer o Homem dos Seus Sonhos (2010)
---Vicky Cristina Barcelona (2008)
---Scoop - O Grande Furo (2006)
---Match Point - Ponto Final (2005)
---Celebridades (1998)
---Desconstruindo Harry (1997)
---Todos Dizem Eu Te Amo (1996)
+--O Homem Irracional
+--Magia ao Luar
+--Meia-Noite em Paris
+--Você Vai Conhecer o Homem dos Seus Sonhos
+--Vicky Cristina Barcelona
+--Scoop - O Grande Furo
+--Match Point - Ponto Final
+--Celebridades
+--Desconstruindo Harry
+--Todos Dizem Eu Te Amo
 #
 Steven Spielberg
---Ponte dos Espiões (2015)
---Guerra dos Mundos (2005)
---O Terminal (2004)
---Prenda-me Se For Capaz (2002)
+--Ponte dos Espiões
+--Guerra dos Mundos
+--O Terminal
+--Prenda-me Se For Capaz
